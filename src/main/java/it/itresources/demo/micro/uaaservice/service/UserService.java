@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -26,6 +27,9 @@ public class UserService {
     private final DescriptionRepository descriptionRepository;
     private final RoleRepository roleRepository;
 
+    @Value("${default.user.role}")
+    private String defaultUserRole;
+
     @Autowired
     public UserService(UserRepository userRepository,
         DescriptionRepository descriptionRepository,
@@ -38,6 +42,7 @@ public class UserService {
     public UserDto create(UserDto userDto) {
         logger.info("************************************************************");
         logger.info("****************** Request to save user ********************");
+        logger.info("defaultRole: " + defaultUserRole);
         logger.info("************************************************************");
 
         Description description = null;
@@ -51,6 +56,12 @@ public class UserService {
         if (!StringUtils.isEmpty(userDto.getRole())) {
             role = roleRepository.findOneByName(userDto.getRole());
         }
+        
+        if (role == null) {
+            logger.info("getting role for: " + defaultUserRole);
+            role = roleRepository.findOneByName(defaultUserRole);
+        }
+        
 
         // Create Entity
         User user = new User(null, userDto.getUsername(), description, role);
@@ -59,6 +70,8 @@ public class UserService {
         User newUser = userRepository.save(user);
 
         userDto.setId(newUser.getId());
+
+        userDto.setRole(user.getRole().getName());
 
         return userDto;
     }

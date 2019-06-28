@@ -1,6 +1,22 @@
 server:
   port: 3000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - health
+        - refresh
+
+info:
+  service:
+    name: UaaService
+    group: introms
+    version: 0.1.0
+    
+
 spring:
   application:
     name: UaaService
@@ -15,6 +31,13 @@ spring:
       hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: create-drop
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
 
 logging:
   level:

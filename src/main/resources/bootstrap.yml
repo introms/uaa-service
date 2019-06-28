@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: UaaService
+  profiles:
+    active: production
+  cloud:
+    config:
+      uri: http://localhost:8888
+      username: test
+      password: test
