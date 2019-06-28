@@ -1,0 +1,23 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: UaaService
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/introms?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: darkstar
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create-drop
+
+logging:
+  level:
+    it.itresources.demo.micro.uaaservice: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
