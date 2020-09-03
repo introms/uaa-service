@@ -19,7 +19,7 @@ public class Description {
     private Long id;
 
     @Column(nullable = true, length = 512)
-    private String desccriptionText;
+    private String descriptionText;
 
     @OneToOne(mappedBy = "description")
     private User user;
@@ -31,7 +31,7 @@ public class Description {
 
     public Description(Long id, String desccriptionText, User user) {
         this.id = id;
-        this.desccriptionText = desccriptionText;
+        this.descriptionText = desccriptionText;
         this.user = user;
     }
 
@@ -44,11 +44,11 @@ public class Description {
     }
 
     public String getDesccriptionText() {
-        return this.desccriptionText;
+        return this.descriptionText;
     }
 
     public void setDesccriptionText(String desccriptionText) {
-        this.desccriptionText = desccriptionText;
+        this.descriptionText = desccriptionText;
     }
 
     public User getUser() {
@@ -65,7 +65,7 @@ public class Description {
     }
 
     public Description desccriptionText(String desccriptionText) {
-        this.desccriptionText = desccriptionText;
+        this.descriptionText = desccriptionText;
         return this;
     }
 
@@ -82,12 +82,12 @@ public class Description {
             return false;
         }
         Description description = (Description) o;
-        return Objects.equals(id, description.id) && Objects.equals(desccriptionText, description.desccriptionText) && Objects.equals(user, description.user);
+        return Objects.equals(id, description.id) && Objects.equals(descriptionText, description.descriptionText) && Objects.equals(user, description.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, desccriptionText, user);
+        return Objects.hash(id, descriptionText, user);
     }
 
     @Override

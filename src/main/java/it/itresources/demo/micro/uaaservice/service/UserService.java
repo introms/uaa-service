@@ -80,9 +80,10 @@ public class UserService {
         List<UserDto> userDtos = 
             userRepository.findAll()
                 .stream()
-                    .map(u -> new UserDto(u.getId(), u.getUsername(), u.getRole().getName(), u.getDescription().getDesccriptionText()))
+                    .map(u -> new UserDto(u.getId(), u.getUsername(), u.getRole().getName(), u.getRole().getDescription(), u.getDescription().getDesccriptionText()))
                         .collect(Collectors.toList());
 
         return userDtos;
     }
+    
 }

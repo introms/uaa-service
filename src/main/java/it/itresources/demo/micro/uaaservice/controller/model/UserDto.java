@@ -11,16 +11,18 @@ public class UserDto {
     @NotNull(message = "*** INPUT VALIDATION FAILED: username is mandatory!!!!! ***")
     private String username;
     private String role;
+    private String roleDescription;
     private String description;
 
 
     public UserDto() {
     }
 
-    public UserDto(long id, String username, String role, String description) {
+    public UserDto(long id, String username, String role, String roleDescription, String description) {
         this.id = id;
         this.username = username;
         this.role = role;
+        this.roleDescription = roleDescription;
         this.description = description;
     }
 
@@ -75,8 +77,18 @@ public class UserDto {
         this.description = description;
         return this;
     }
+    
+    
 
-    @Override
+    public String getRoleDescription() {
+		return roleDescription;
+	}
+
+	public void setRoleDescription(String roleDescription) {
+		this.roleDescription = roleDescription;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (o == this)
             return true;

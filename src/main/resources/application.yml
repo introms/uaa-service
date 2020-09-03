@@ -30,14 +30,18 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+#  instance:
+#    preferIpAddress: true
+
+default:
+  user:
+    role: "ROLE_USER"
 
 logging:
   level:
